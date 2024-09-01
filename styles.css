@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --timberwolf: #d1d1d1ff;
+    --azul: #1a1b41ff;
+    --frost: #FFFFFF
+}
+
+body {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Open Sans", sans-serif;
+    overflow-y: scroll;
+}
+
+.main {
+    width: 80%;
+    background-color: var(--frost);
+}
+
+.tittle {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.tittle h1 {
+    font-size: 35px;
+    font-weight: 800;
+    text-align: center;
+    color: var(--azul);
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#title1 {
+    animation: showup 20s forwards;
+}
+
+#title2 {
+    width: 0;
+    animation: reveal 20s forwards;
+}
+
+#title2 span {
+    margin-left: 800px;
+    animation: slidein 20s forwards;
+}
+
+@keyframes showup {
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+
+    /* Elimina la opacidad a 0 al final */
+}
+
+@keyframes slidein {
+    0% {
+        margin-left: -800px;
+    }
+
+    20% {
+        margin-left: -800px;
+    }
+
+    35% {
+        margin-left: 0;
+    }
+
+    100% {
+        margin-left: 0;
+    }
+}
+
+@keyframes reveal {
+    0% {
+        opacity: 0;
+        width: 0;
+    }
+
+    20% {
+        opacity: 1;
+        width: 0;
+    }
+
+    30% {
+        width: 800px;
+    }
+
+    100% {
+        opacity: 1;
+        width: 800px;
+    }
+
+    /* Mantén la opacidad y el ancho final */
+}
+
+.presentation {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.presentationMain {
+    height: 400px;
+    width: 800px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.presentationParagraph {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.presentationImg {
+    width: auto;
+}
+
+.presentationImg img {
+    width: 400px;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.modules {
+    display: flex;
+    width: 100%;
+    height: 80vh;
+    gap: 30px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modulesPresentation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.modulesTittle {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.modulesTittle h1 {
+    font-size: 35px;
+    font-weight: 800;
+    color: var(--azul);
+}
+
+.modulesParts {
+    padding: 15px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    width: 30%;
+
+    background: rgba(255, 255, 255, 0.23);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.modulesPartsTittle {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.modulesPartsTittle img {
+    border-radius: 5px;
+}
+
+.modulesPartsButton {
+    display: flex;
+    justify-content: center;
+}
+
+.modulesPartsButton a {
+    padding: 10px;
+    background-color: var(--azul);
+    border-radius: 5px;
+    text-decoration: none;
+    color: var(--frost);
+    transition: 1s;
+    border: 1px solid transparent;
+}
+
+.modulesPartsButton a:hover {
+    background-color: var(--frost);
+    color: var(--azul);
+    border: 1px solid var(--azul);
+    transition: 1s;
+}
+
+.modulesSelection{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    height: 80vh;
+}
+
+.modulesSelectionMain{
+    width: 80%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
