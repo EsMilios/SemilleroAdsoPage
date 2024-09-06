@@ -242,3 +242,42 @@ body {
     gap: 10px;
     align-items: center;
 }
+
+.modulesSelectionMainModules{   
+    background-color: var(--azul);
+    border: 1px solid var(--timberwolf);
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.modelVocabulary{
+    width: 100%;
+}
+
+.moduleMainBtn, .term-container button{
+    padding: 10px;
+    background-color: var(--azul);
+    border-radius: 5px;
+    text-decoration: none;
+    color: var(--frost);
+    transition: 1s;
+    border: 1px solid transparent;
+}
+
+.moduleMainBtn, .term-container button:hover{
+    background-color: var(--frost);
+    color: var(--azul);
+    border: 1px solid var(--azul);
+    transition: 1s;
+}
+
+.moduleContent{
+    height: fit-content;
+    width: 100%;
+    padding: 15px;
+}

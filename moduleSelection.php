@@ -23,7 +23,7 @@
                     <a href="#"></a>
                 </div>
 
-                <div class="moduleSelectionMainModules">
+                <div class="modulesSelectionMainModules">
                     <h1>Cloud Computing Module</h1>
                     <p>This module introduces essential cloud computing vocabulary, focusing on service models like IaaS, PaaS, and SaaS, cloud platforms like AWS and Azure, and tools like Docker, Kubernetes, and Serverless computing for scalable, efficient applications.</p>
                     <a href="#"></a>

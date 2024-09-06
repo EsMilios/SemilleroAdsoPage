@@ -5,7 +5,7 @@
         </div>
 
         <div class="navStart">
-            <a href="moduleSelection.php">Start Learning!</a>
+            <a href="module.php">Start Learning!</a>
         </div>
     </nav>
 </section>

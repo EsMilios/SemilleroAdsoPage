@@ -6,7 +6,7 @@
     <div class="footerInformation">
         <h3>Information</h3>
         <ul>
-            <li><a href="#">Github</a></li>
+            <li><a href="https://github.com/EsMilios/SemilleroAdsoPage" target="_blank">Github</a></li>
             <li><a href="#">Team</a></li>
             <li><a href="#">About</a></li>
         </ul>
@@ -29,6 +29,7 @@
     }
 
     footer {
+        margin-top: 15px;
         width: 100%;
         padding: 15px;
         display: flex;
