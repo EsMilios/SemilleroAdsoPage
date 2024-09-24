@@ -51,12 +51,7 @@
                     </div>
 
                     <div>
-                        <p>In this module, you will explore key <b>vocabulary</b> related to <b>web development</b>.
-                            You'll learn about HTML, the language for structuring web content, and CSS, which is used to
-                            style and layout web pages. The module also covers JavaScript, a programming language for
-                            adding interactivity to websites. You'll delve into Responsive Design concepts, ensuring
-                            that websites adapt to various devices, and explore frameworks like Bootstrap that offer
-                            pre-designed components for efficient web development.</p>
+                        <p>In this module, you'll learn essential vocabulary for web development, covering HTML for structuring content, CSS for styling pages, and JavaScript for adding interactivity. You'll also explore Responsive Design concepts for device adaptability and frameworks like Bootstrap that provide pre-designed components for efficient development.</p>
                     </div>
 
                     <div class="modulesPartsButton">
@@ -77,12 +72,7 @@
                     </div>
 
                     <div>
-                        <p>In this module, you'll focus on essential <b>vocabulary</b> associated with <b>cloud
-                                computing</b>. You'll gain an understanding of Cloud Computing basics and various
-                            service models like IaaS, PaaS, and SaaS. The module will introduce you to major cloud
-                            platforms such as AWS, Azure, and Google Cloud. You'll also learn about containerization
-                            with Docker, orchestration with Kubernetes, Serverless computing, CI/CD practices, and Load
-                            Balancing to ensure reliable and scalable cloud-based applications.</p>
+                        <p>In this module, you'll explore essential vocabulary for cloud computing, including basics and service models like IaaS, PaaS, and SaaS. You'll learn about key platforms such as AWS, Azure, and Google Cloud, along with concepts like containerization using Docker, orchestration with Kubernetes, Serverless computing, CI/CD practices, and Load Balancing for scalable applications.p>
                     </div>
 
                     <div class="modulesPartsButton">

@@ -3,6 +3,7 @@
 * {
     margin: 0;
     padding: 0;
+
 }
 
 :root {
@@ -187,6 +188,7 @@ body {
     gap: 10px;
     flex-direction: column;
     width: 30%;
+    height: (fit-content + 20px);
 
     background: rgba(255, 255, 255, 0.23);
     border-radius: 16px;
@@ -280,4 +282,105 @@ body {
     height: fit-content;
     width: 100%;
     padding: 15px;
+}
+
+.modulesSelectionButton{
+    display: flex;
+    justify-content: center;
+}
+
+.modulesSelectionButton a {
+    padding: 10px;
+    background-color: var(--frost);
+    border-radius: 5px;
+    text-decoration: none;
+    color: var(--azul);
+    transition: 1s;
+    border: 1px solid transparent;
+}
+
+.modulesSelectionButton a:hover {
+    background-color: var(--azul);
+    color: var(--frost);
+    border: 1px solid var(--frost);
+    transition: 1s;
+}
+
+/* template */
+
+.template {
+    margin-top: 10px;
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.templateMain{
+    margin-top: 30px;
+    height: 90vh;
+    width: 65%;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 20% 65%;
+    
+}
+
+.modulesNav {
+    padding: 35px;
+    background-color: var(--azul);
+}
+
+.modulesNav div{
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.modulesNav div a{
+    text-decoration: none;
+    color: var(--frost);
+}
+
+.modulesContent div{
+    display: flex;
+    flex-direction: column;
+    padding-left: 30px;
+    padding-top: 20px;
+}
+
+.modulesContent div h2{
+    color: var(--azul);
+    margin-bottom: 30px;
+}
+
+.modulesContent div p{
+    margin-top: 10px; /* Agrega espacio entre el título y el párrafo */
+    font-size: 16px; /* Ajusta el tamaño de la fuente del párrafo */
+    color: var(--azul); 
+    margin-bottom: 30px;
+}
+
+.modulesContent img {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+.goToVocabulary{
+    text-decoration: none;
+    padding: 10px;
+    background-color: var(--azul);
+    color: var(--timberwolf);
+    border-radius: 5px;
+    border: 1px solid transparent;
+    transition: 1s;
+}
+
+.goToVocabulary:hover {
+    background-color: var(--frost);
+    color: var(--azul);
+    border: 1px solid var(--azul);
+    transition: 1s;
 }

@@ -68,28 +68,29 @@
 
     <script>
         // Diccionario con términos y definiciones solo en inglés
-        const dictionary = [
-            { term: 'HTML', en: 'Markup language used to structure the content of web pages.' },
-            { term: 'CSS', en: 'Styling language used to define the visual presentation of an HTML document.' },
-            { term: 'JavaScript', en: 'Programming language used to add interactivity to web pages.' },
-            { term: 'Responsive Design', en: 'Design technique that allows web pages to adapt to different screen sizes and devices.' },
-            { term: 'Bootstrap', en: 'Framework for building responsive and modern websites.' },
-            { term: 'React', en: 'JavaScript library for building interactive user interfaces.' },
-            { term: 'Angular', en: 'Google-maintained web framework for building scalable applications.' },
-            { term: 'Vue.js', en: 'Progressive JavaScript framework focused on simplicity.' },
-            { term: 'API', en: 'Set of rules for different applications to communicate with each other.' },
-            { term: 'REST', en: 'Architecture for communication between distributed systems.' },
-            { term: 'GraphQL', en: 'Query language for APIs that allows requesting only the necessary data.' },
-            { term: 'AJAX', en: 'Technique for updating parts of a web page without reloading the entire page.' },
-            { term: 'Node.js', en: 'Server-side JavaScript runtime environment.' },
-            { term: 'Express.js', en: 'Node.js framework for quickly building web applications and APIs.' },
-            { term: 'Django', en: 'Python framework that promotes rapid and clean development.' },
-            { term: 'Ruby on Rails', en: 'Ruby framework following the convention over configuration principle.' },
-            { term: 'WebSocket', en: 'Protocol for real-time bidirectional communication.' },
-            { term: 'CDN', en: 'Network of distributed servers for fast web content delivery.' },
-            { term: 'SEO', en: 'Practices to improve a website\'s visibility in search engines.' },
-            { term: 'SSL/TLS', en: 'Security protocols to encrypt communication between browser and server.' },
+        const completeDictionary = [
+            { term: 'HTML', en: 'Markup language used to structure the content of web pages.', icon: 'https://cdn-icons-png.flaticon.com/512/732/732212.png' },
+            { term: 'CSS', en: 'Styling language used to define the visual presentation of an HTML document.', icon: 'https://cdn-icons-png.flaticon.com/512/732/732190.png' },
+            { term: 'JavaScript', en: 'Programming language used to add interactivity to web pages.', icon: 'https://cdn-icons-png.flaticon.com/512/5968/5968292.png' },
+            { term: 'Responsive Design', en: 'Design technique that allows web pages to adapt to different screen sizes and devices.', icon: 'https://cdn-icons-png.flaticon.com/512/2097/2097276.png' },
+            { term: 'Bootstrap', en: 'Framework for building responsive and modern websites.', icon: 'https://cdn-icons-png.flaticon.com/512/5968/5968672.png' },
+            { term: 'React', en: 'JavaScript library for building interactive user interfaces.', icon: 'https://cdn-icons-png.flaticon.com/512/919/919851.png' },
+            { term: 'Angular', en: 'Google-maintained web framework for building scalable applications.', icon: 'https://cdn.iconscout.com/icon/free/png-256/free-angular-logo-icon-download-in-svg-png-gif-file-formats--coding-programming-logos-icons-1720094.png?f=webp' },
+            { term: 'Vue.js', en: 'Progressive JavaScript framework focused on simplicity.', icon: 'https://img.icons8.com/?size=512&id=rY6agKizO9eb&format=png' },
+            { term: 'API', en: 'Set of rules for different applications to communicate with each other.', icon: 'https://cdn-icons-png.flaticon.com/512/2165/2165004.png' },
+            { term: 'REST', en: 'Architecture for communication between distributed systems.', icon: 'https://cdn-icons-png.flaticon.com/512/8654/8654539.png' },
+            { term: 'GraphQL', en: 'Query language for APIs that allows requesting only the necessary data.', icon: 'https://static-00.iconduck.com/assets.00/graphql-icon-2048x2048-ivjhldn5.png' },
+            { term: 'AJAX', en: 'Technique for updating parts of a web page without reloading the entire page.', icon: 'https://static.thenounproject.com/png/4147235-200.png' },
+            { term: 'Node.js', en: 'Server-side JavaScript runtime environment.', icon: 'https://cdn-icons-png.flaticon.com/512/919/919825.png' },
+            { term: 'Express.js', en: 'Node.js framework for quickly building web applications and APIs.', icon: 'https://img.icons8.com/fluent/512/express-js.png' },
+            { term: 'Django', en: 'Python framework that promotes rapid and clean development.', icon: 'https://cdn.iconscout.com/icon/free/png-256/free-django-11-1175036.png?f=webp' },
+            { term: 'Ruby on Rails', en: 'Ruby framework following the convention over configuration principle.', icon: 'https://www.svgrepo.com/show/354252/rails.svg' },
+            { term: 'WebSocket', en: 'Protocol for real-time bidirectional communication.', icon: 'https://seeklogo.com/images/W/websocket-logo-91B815D333-seeklogo.com.png' },
+            { term: 'CDN', en: 'Network of distributed servers for fast web content delivery.', icon: 'https://cdn-icons-png.flaticon.com/512/10988/10988181.png' },
+            { term: 'SEO', en: 'Practices to improve a website\'s visibility in search engines.', icon: 'https://cdn-icons-png.flaticon.com/512/5902/5902216.png' },
+            { term: 'SSL/TLS', en: 'Security protocols to encrypt communication between browser and server.', icon: 'https://www.hostarmada.com/blog/wp-content/uploads/2020/11/ssl-certificate.png' }
         ];
+
 
         // Función para generar las flashcards
         function generateFlashcards() {
