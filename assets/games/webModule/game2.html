@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete the Tech Term</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-size: 18px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .option, .exit {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background-color 0.3s ease;
+            font-size: 14px;
+        }
+
+        .exit {
+            background-color: red;
+        }
+
+        .option img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .option:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        @media (max-width: 600px) {
+            .option {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Complete the Tech Term</h1>
+    <div class="question" id="question">Click a word to complete the phrase!</div>
+    <div class="options" id="options-container"></div>
+    <div class="result" id="result-container"></div>
+    <button onclick="exitGame()" class="exit">Exit Game</button>
+</div>
+
+<script>
+    const dictionary = [
+        { term: 'HTML', en: 'Markup language used to structure the content of web pages.', icon: 'https://cdn-icons-png.flaticon.com/512/732/732212.png' },
+        { term: 'CSS', en: 'Styling language used to define the visual presentation of an HTML document.', icon: 'https://cdn-icons-png.flaticon.com/512/732/732190.png' },
+        { term: 'JavaScript', en: 'Programming language used to add interactivity to web pages.', icon: 'https://cdn-icons-png.flaticon.com/512/5968/5968292.png' },
+        { term: 'Responsive Design', en: 'Design technique that allows web pages to adapt to different screen sizes and devices.', icon: 'https://cdn-icons-png.flaticon.com/512/2097/2097276.png' },
+        { term: 'Bootstrap', en: 'Framework for building responsive and modern websites.', icon: 'https://cdn-icons-png.flaticon.com/512/5968/5968672.png' },
+        { term: 'React', en: 'JavaScript library for building interactive user interfaces.', icon: 'https://cdn-icons-png.flaticon.com/512/919/919851.png' },
+        { term: 'Angular', en: 'Google-maintained web framework for building scalable applications.', icon: 'https://cdn.iconscout.com/icon/free/png-256/free-angular-logo-icon-download-in-svg-png-gif-file-formats--coding-programming-logos-icons-1720094.png?f=webp' },
+        { term: 'Vue.js', en: 'Progressive JavaScript framework focused on simplicity.', icon: 'https://img.icons8.com/?size=512&id=rY6agKizO9eb&format=png' },
+        { term: 'API', en: 'Set of rules for different applications to communicate with each other.', icon: 'https://cdn-icons-png.flaticon.com/512/2165/2165004.png' },
+        { term: 'REST', en: 'Architecture for communication between distributed systems.', icon: 'https://cdn-icons-png.flaticon.com/512/8654/8654539.png' },
+        { term: 'GraphQL', en: 'Query language for APIs that allows requesting only the necessary data.', icon: 'https://static-00.iconduck.com/assets.00/graphql-icon-2048x2048-ivjhldn5.png' },
+        { term: 'AJAX', en: 'Technique for updating parts of a web page without reloading the entire page.', icon: 'https://static.thenounproject.com/png/4147235-200.png' },
+        { term: 'Node.js', en: 'Server-side JavaScript runtime environment.', icon: 'https://cdn-icons-png.flaticon.com/512/919/919825.png' },
+        { term: 'Express.js', en: 'Node.js framework for quickly building web applications and APIs.', icon: 'https://img.icons8.com/fluent/512/express-js.png' },
+        { term: 'Django', en: 'Python framework that promotes rapid and clean development.', icon: 'https://cdn.iconscout.com/icon/free/png-256/free-django-11-1175036.png?f=webp' },
+        { term: 'Ruby on Rails', en: 'Ruby framework following the convention over configuration principle.', icon: 'https://www.svgrepo.com/show/354252/rails.svg' },
+        { term: 'WebSocket', en: 'Protocol for real-time bidirectional communication.', icon: 'https://seeklogo.com/images/W/websocket-logo-91B815D333-seeklogo.com.png' },
+        { term: 'CDN', en: 'Network of distributed servers for fast web content delivery.', icon: 'https://cdn-icons-png.flaticon.com/512/10988/10988181.png' },
+        { term: 'SEO', en: 'Practices to improve a website\'s visibility in search engines.', icon: 'https://cdn-icons-png.flaticon.com/512/5902/5902216.png' },
+        { term: 'SSL/TLS', en: 'Security protocols to encrypt communication between browser and server.', icon: 'https://cdn-icons-png.flaticon.com/512/1721/1721951.png' }
+    ];
+
+    let currentQuestionIndex = 0;
+    let correctAnswers = 0;
+
+    const questionElement = document.getElementById('question');
+    const optionsContainer = document.getElementById('options-container');
+    const resultContainer = document.getElementById('result-container');
+
+    // Función para mezclar un array (algoritmo Fisher-Yates)
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    // Mezclar preguntas al iniciar el juego
+    shuffle(dictionary);
+
+    function displayQuestion() {
+        const currentQuestion = dictionary[currentQuestionIndex];
+        questionElement.textContent = currentQuestion.en;
+        displayOptions();
+    }
+
+    function displayOptions() {
+        optionsContainer.innerHTML = '';
+
+        // Mezclar opciones antes de mostrarlas
+        const shuffledOptions = [...dictionary];
+        shuffle(shuffledOptions);
+
+        shuffledOptions.forEach(item => {
+            const button = document.createElement('button');
+            button.classList.add('option');
+            button.innerHTML = `<img src="${item.icon}" alt="${item.term}"> ${item.term}`;
+            button.addEventListener('click', () => checkAnswer(item.term));
+            optionsContainer.appendChild(button);
+        });
+    }
+
+    function checkAnswer(selectedTerm) {
+        const correctTerm = dictionary[currentQuestionIndex].term;
+        if (selectedTerm === correctTerm) {
+            correctAnswers++;
+            resultContainer.textContent = 'Correct!';
+        } else {
+            resultContainer.textContent = `Incorrect! The correct term was ${correctTerm}.`;
+        }
+
+        currentQuestionIndex++;
+        if (currentQuestionIndex < dictionary.length) {
+            setTimeout(() => {
+                resultContainer.textContent = '';
+                displayQuestion();
+            }, 1000);
+        } else {
+            setTimeout(() => {
+                questionElement.textContent = 'Game Over!';
+                optionsContainer.innerHTML = '';
+                resultContainer.innerHTML = `You answered ${correctAnswers} out of ${dictionary.length} correctly.`;
+            }, 1000);
+        }
+    }
+
+    function exitGame() {
+        if (confirm("Are you sure you want to exit the game?")) {
+            window.location.href = "../../../webModule.php";
+        }
+    }
+
+    // Mostrar la primera pregunta
+    displayQuestion();
+</script>
+
+</body>
+</html>

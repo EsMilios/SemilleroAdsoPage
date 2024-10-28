@@ -30,7 +30,7 @@
                     </div>
                     <p>This module covers key terms in web development, including HTML for structuring content, CSS for styling, JavaScript for interactivity, Responsive Design for multi-device compatibility, and Bootstrap for quick, responsive layouts.</p>
                     <div class="modulesSelectionButton">
-                        <a href="#">Start Learning!</a>
+                        <a href="webModule.php">Start Learning!</a>
                     </div>
                 </div>
 
@@ -46,7 +46,7 @@
                     </div>
                     <p>This module introduces essential cloud computing vocabulary, focusing on service models like IaaS, PaaS, and SaaS, cloud platforms like AWS and Azure, and tools like Docker, Kubernetes, and Serverless computing for scalable, efficient applications.</p>
                     <div class="modulesSelectionButton">
-                        <a href="#">Start Learning!</a>
+                        <a href="cloudModule.php">Start Learning!</a>
                     </div>
                 </div>
 

@@ -1,0 +1,208 @@
+:root {
+    --timberwolf: #d1d1d1ff;
+    --azul: #1a1b41ff;
+    --frost: #FFFFFF;
+    --accent-color: #007BFF;
+}
+
+.moduleMain {
+    margin-top: 15px;
+    margin-bottom: 50px;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    height: 1300px;
+}
+
+.moduleRight {
+    background-color: var(--frost);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    height: 100%;
+}
+
+.moduleLeft {
+    padding: 10px;
+    background-color: var(--frost);
+}
+
+.moduleLeft ul {
+    list-style: none;
+    padding: 0;
+}
+
+.moduleLeft li {
+    margin: 10px 0;
+}
+
+.moduleLeft a {
+    text-decoration: none;
+    color: var(--azul);
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.moduleLeft a:hover {
+    color: var(--accent-color);
+}
+
+h1 {
+    font-size: 35px;
+    font-weight: 800;
+    text-align: center;
+    color: var(--azul);
+    margin-bottom: 20px;
+}
+
+.games {
+    text-align: center;
+}
+
+.games-list {
+    list-style: none;
+    padding: 0;
+}
+
+.games-list li {
+    margin: 10px 0;
+}
+
+.game-link {
+    text-decoration: none;
+    color: var(--accent-color);
+    font-weight: bold;
+    font-size: 20px;
+    transition: color 0.3s;
+}
+
+.game-link:hover {
+    color: var(--azul);
+}
+
+.interaction {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #007BFF;
+    color: white;
+    transform: 1.5s;
+}
+
+.interaction-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+
+}
+
+.toggle-btn {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.toggle-btn:hover {
+    background-color: #0056b3;
+}
+
+.content {
+    display: none; /* Ocultar por defecto */
+    margin-top: 10px;
+}
+
+.message-content p {
+    color: black;
+}
+
+.chat-container div {
+    padding: 10px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+h2, h3 {
+    margin: 10px 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Ajustes de estilo para que no interfiera con tu estructura */
+.interactions .interaction-container {
+    width: 100%;
+}
+
+
+.chat-container {
+    width: 80%;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.chat-message {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.chat-message.left {
+    justify-content: flex-start;
+}
+
+.chat-message.right {
+    justify-content: flex-end;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.profile img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.message-content audio {
+    width: 250px;
+    height: 30px;
+}
+
+.chat-message.right .profile {
+    margin-left: 10px;
+    margin-right: 0;
+}
+
+.profile {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    border: 2px solid black;
+}

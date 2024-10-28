@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete the Tech Term</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-size: 18px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .option, .exit {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background-color 0.3s ease;
+            font-size: 14px;
+        }
+
+        .exit {
+            background-color: red;
+        }
+
+        .option img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .option:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        @media (max-width: 600px) {
+            .option {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Complete the Tech Term</h1>
+    <div class="question" id="question">Click a word to complete the phrase!</div>
+    <div class="options" id="options-container"></div>
+    <div class="result" id="result-container"></div>
+    <button onclick="exitGame()" class="exit">Exit Game</button>
+</div>
+
+<script>
+const dictionary = [
+    { 
+        term: 'Cloud Computing', 
+        en: 'Provision of computing services (servers, storage, databases, networking, software, etc.) over the internet, allowing access to resources on demand.', 
+        icon: 'https://cdn-icons-png.flaticon.com/128/5586/5586062.png'
+    },
+    { 
+        term: 'AWS (Amazon Web Services)', 
+        en: 'Amazon\'s cloud computing platform that offers a wide range of services such as storage, databases, analytics, artificial intelligence, and more.', 
+        icon: 'https://cdn-icons-png.flaticon.com/128/11518/11518934.png'
+    },
+    { 
+        term: 'Azure', 
+        en: 'Microsoft\'s cloud computing platform that provides solutions for application development, storage, databases, networking, and more.', 
+        icon: 'https://cdn-icons-png.flaticon.com/128/873/873107.png'
+    },
+    { 
+        term: 'Google Cloud', 
+        en: 'Google\'s cloud service platform that includes tools for development, data analysis, artificial intelligence, and more.', 
+        icon: 'https://cdn-icons-png.flaticon.com/128/104/104088.png'
+    },
+    { 
+        term: 'SaaS (Software as a Service)', 
+        en: 'Cloud service model where software is hosted by a provider and accessible to users over the internet, without the need for local installation.', 
+        icon: 'https://cdn-icons-png.flaticon.com/128/5256/5256916.png'
+    },
+    { 
+        term: 'PaaS (Platform as a Service)', 
+        en: 'Cloud service model that offers a platform for developing, running, and managing applications without worrying about the underlying infrastructure.', 
+        icon: 'https://cdn-icons-png.flaticon.com/128/11631/11631011.png'
+    },
+    { 
+        term: 'IaaS (Infrastructure as a Service)', 
+        en: 'Cloud service model that provides computing infrastructure (servers, storage, networking) on-demand, allowing companies to scale according to their needs.', 
+        icon: 'https://cdn-icons-png.flaticon.com/128/11630/11630985.png'
+    },
+    { 
+        term: 'Kubernetes', 
+        en: 'Container orchestration system that automates the deployment, scaling, and management of containerized applications in the cloud.', 
+        icon: 'https://static-00.iconduck.com/assets.00/kubernetes-icon-2048x1995-r1q3f8n7.png'
+    },
+    { 
+        term: 'Docker', 
+        en: 'Platform that allows developers to build, test, and deploy applications in containers, ensuring consistency across different environments.', 
+        icon: 'https://www.docker.com/wp-content/uploads/2023/05/symbol_blue-docker-logo.png'
+    },
+    { 
+        term: 'Serverless', 
+        en: 'Cloud execution model where the provider manages the infrastructure and code execution, allowing developers to focus on application logic.', 
+        icon: 'https://cdn.icon-icons.com/icons2/2699/PNG/512/serverless_logo_icon_168838.png'
+    },
+    { 
+        term: 'CI/CD (Continuous Integration/Continuous Deployment)', 
+        en: 'Development practices that automate the process of code integration and deployment, improving the speed and quality of software development.', 
+        icon: 'https://www.mabl.com/hs-fs/hubfs/CICDBlog.png?width=536&name=CICDBlog.png'
+    },
+    { 
+        term: 'Load Balancer', 
+        en: 'Device or service that distributes incoming network traffic across multiple servers to ensure high availability and reliability of the application.', 
+        icon: 'https://cdn-icons-png.flaticon.com/512/8741/8741209.png'
+    }
+];
+
+
+    let currentQuestionIndex = 0;
+    let correctAnswers = 0;
+
+    const questionElement = document.getElementById('question');
+    const optionsContainer = document.getElementById('options-container');
+    const resultContainer = document.getElementById('result-container');
+
+    // Función para mezclar un array (algoritmo Fisher-Yates)
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    // Mezclar preguntas al iniciar el juego
+    shuffle(dictionary);
+
+    function displayQuestion() {
+        const currentQuestion = dictionary[currentQuestionIndex];
+        questionElement.textContent = currentQuestion.en;
+        displayOptions();
+    }
+
+    function displayOptions() {
+        optionsContainer.innerHTML = '';
+
+        // Mezclar opciones antes de mostrarlas
+        const shuffledOptions = [...dictionary];
+        shuffle(shuffledOptions);
+
+        shuffledOptions.forEach(item => {
+            const button = document.createElement('button');
+            button.classList.add('option');
+            button.innerHTML = `<img src="${item.icon}" alt="${item.term}"> ${item.term}`;
+            button.addEventListener('click', () => checkAnswer(item.term));
+            optionsContainer.appendChild(button);
+        });
+    }
+
+    function checkAnswer(selectedTerm) {
+        const correctTerm = dictionary[currentQuestionIndex].term;
+        if (selectedTerm === correctTerm) {
+            correctAnswers++;
+            resultContainer.textContent = 'Correct!';
+        } else {
+            resultContainer.textContent = `Incorrect! The correct term was ${correctTerm}.`;
+        }
+
+        currentQuestionIndex++;
+        if (currentQuestionIndex < dictionary.length) {
+            setTimeout(() => {
+                resultContainer.textContent = '';
+                displayQuestion();
+            }, 1000);
+        } else {
+            setTimeout(() => {
+                questionElement.textContent = 'Game Over!';
+                optionsContainer.innerHTML = '';
+                resultContainer.innerHTML = `You answered ${correctAnswers} out of ${dictionary.length} correctly.`;
+            }, 1000);
+        }
+    }
+
+    function exitGame() {
+        if (confirm("Are you sure you want to exit the game?")) {
+            window.location.href = "../../../cloudModule.php"; // Ajusta la URL de salida según sea necesario
+        }
+    }
+
+    // Mostrar la primera pregunta
+    displayQuestion();
+</script>
+
+</body>
+</html>

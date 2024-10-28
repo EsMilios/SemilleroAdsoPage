@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: Word Game</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f3f6f9;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #007bff;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        form {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            width: 300px;
+        }
+
+        label {
+            font-size: 18px;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .scrambled {
+            font-weight: bold;
+            font-size: 26px;
+            color: #e94e77;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 15px 0;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .result {
+            font-size: 22px;
+            margin-top: 30px;
+            min-height: 50px;
+        }
+
+        .restart, .back-home {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .restart {
+            background-color: #28a745;
+        }
+
+        .restart:hover {
+            background-color: #218838;
+        }
+
+        .next {
+            margin-top: 10px;
+            background-color: #ff7f50;
+        }
+
+        .next:hover {
+            background-color: #e96e41;
+        }
+
+        .back-home {
+            background-color: #6c757d;
+        }
+
+        .back-home:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <h1>Word Game!</h1>
+    <form id="word-game-form">
+        <label>
+            Unscramble these letters to form a word:<br>
+            <span class="scrambled"></span>
+        </label>
+        <input type="text" size="10" required>
+        <button type="submit">Check</button>
+    </form>
+    <div class="result"></div>
+    <button class="restart" onclick="restartGame()">Restart Game</button>
+    <button class="back-home" onclick="goHome()">Back to Web Module</button>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        const words = [
+            "HTML", "CSS", "JavaScript", "Responsive Design", "Bootstrap",
+            "React", "Angular", "Vue.js", "API", "REST",
+            "GraphQL", "AJAX", "Node.js", "Express.js", "Django",
+            "Ruby on Rails", "WebSocket", "CDN", "SEO"
+        ];
+
+        let currentWord = "";
+        let currentScrambled = "";
+        let round = 0;
+        let usedWords = [];  // Array para llevar registro de palabras usadas
+
+        function scrambleWord(word) {
+    let wordNoSpaces = word.replace(/\s+/g, ''); // Quitar todos los espacios
+
+    // Mezclar las letras
+    let scrambledWord = wordNoSpaces.split('').sort(() => Math.random() - 0.5).join('');
+
+    return scrambledWord;
+}
+
+
+
+        function startGame() {
+            if (round >= 5) {
+                $(".result").text("Game Over! You've completed 5 rounds.");
+                $(".scrambled").text("");
+                $("#word-game-form").hide();
+                $(".restart").show();
+                $(".back-home").show(); // Mostrar botón "Ir al Inicio"
+                return;
+            }
+
+            round++;
+            const selectedWords = [];
+
+            // Evitar palabras repetidas
+            while (selectedWords.length < 5) {
+                const word = words[Math.floor(Math.random() * words.length)];
+                if (!selectedWords.includes(word) && !usedWords.includes(word)) {
+                    selectedWords.push(word);
+                }
+            }
+
+            currentWord = selectedWords[Math.floor(Math.random() * selectedWords.length)];
+            usedWords.push(currentWord);  // Agregar la palabra usada al array
+            currentScrambled = scrambleWord(currentWord);
+            $(".scrambled").text(currentScrambled);
+            $(".result").text("");
+            $(".restart").hide();
+            $(".back-home").hide();
+        }
+
+        $("#word-game-form").on("submit", function(event) {
+            event.preventDefault();
+            var answer = $(this).find("input[type=text]").val();
+
+            // Comparar sin distinguir entre mayúsculas y minúsculas
+            if (answer.toLowerCase() === currentWord.toLowerCase()) {
+                $(".result")
+                    .css("color", "green")
+                    .text("You Win! Round " + round + " complete!");
+                $("<button>")
+                    .addClass("next")
+                    .attr("type", "button")
+                    .text("Next Round")
+                    .appendTo(".result")
+                    .on("click", function() {
+                        startGame();
+                        $(this).remove();
+                    });
+            } else {
+                $(".result")
+                    .css("color", "red")
+                    .text("Try Again!");
+            }
+        });
+
+        function restartGame() {
+            round = 0;
+            usedWords = [];  // Reiniciar el array de palabras usadas
+            startGame();
+            $(".result").text("");
+            $(".restart").hide();
+            $(".back-home").hide();
+            $("#word-game-form").show();
+        }
+
+        function goHome() {
+            window.location.href = "../../webModule.php"; // Redirigir desde assets/games/juego1 a webModule.php
+        }
+
+        $(document).ready(function() {
+            startGame();
+        });
+    </script>
+</body>
+</html>

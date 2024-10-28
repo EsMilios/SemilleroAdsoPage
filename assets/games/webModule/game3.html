@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .game-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px; /* Espaciado reducido entre columnas */
+        }
+
+        .card {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #007bff; /* Color de las cartas ocultas */
+            cursor: pointer;
+            font-size: 18px;
+            transition: transform 0.2s;
+            position: relative;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card.flipped {
+            background-color: #fff; /* Color de las cartas al ser volteadas */
+            color: #333; /* Color del texto al voltear */
+            border: 1px solid #333; /* Borde al voltear */
+        }
+
+        .card img {
+            width: 60%;
+            height: 60%;
+            display: none; /* Ocultar imágenes inicialmente */
+        }
+
+        .card.flipped img {
+            display: block; /* Mostrar imagen al voltear */
+        }
+
+        #gameOver {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .exit {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .exit:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Memory Game</h1>
+    <div class="game-container" id="gameBoard"></div>
+    <div id="gameOver">
+        <h2>Congratulations! You've won!</h2>
+        <button class="exit" onclick="restartGame()">Play Again</button>
+    </div>
+    <button onclick="exitGame()" class="exit">Exit Game</button> <!-- Botón para salir -->
+</div>
+
+<script>
+    const cards = [
+        { term: 'HTML', icon: 'https://cdn-icons-png.flaticon.com/512/732/732212.png' },
+        { term: 'CSS', icon: 'https://cdn-icons-png.flaticon.com/512/732/732190.png' },
+        { term: 'JavaScript', icon: 'https://cdn-icons-png.flaticon.com/512/5968/5968292.png' },
+        { term: 'Bootstrap', icon: 'https://cdn-icons-png.flaticon.com/512/5968/5968672.png' },
+        { term: 'React', icon: 'https://cdn-icons-png.flaticon.com/512/919/919851.png' },
+        { term: 'Angular', icon: 'https://cdn.iconscout.com/icon/free/png-256/free-angular-logo-icon-download-in-svg-png-gif-file-formats--coding-programming-logos-icons-1720094.png?f=webp' },
+        { term: 'API', icon: 'https://cdn-icons-png.flaticon.com/512/2165/2165004.png' },
+        { term: 'REST', icon: 'https://cdn-icons-png.flaticon.com/512/8654/8654539.png' },
+        { term: 'GraphQL', icon: 'https://static-00.iconduck.com/assets.00/graphql-icon-2048x2048-ivjhldn5.png' },
+        { term: 'Node.js', icon: 'https://cdn-icons-png.flaticon.com/512/919/919825.png' },
+    ];
+
+    let gameCards = [];
+    let firstCard = null;
+    let secondCard = null;
+    let pairsFound = 0;
+
+    function setupGame() {
+        gameCards = [...cards, ...cards]; // Duplicar las cartas
+        gameCards.sort(() => Math.random() - 0.5); // Mezclar las cartas
+
+        const gameBoard = document.getElementById('gameBoard');
+        gameBoard.innerHTML = ''; // Limpiar el tablero
+
+        gameCards.forEach((card) => {
+            const cardElement = document.createElement('div');
+            cardElement.classList.add('card');
+            cardElement.innerHTML = `<img src="${card.icon}" alt="${card.term}">`;
+            cardElement.addEventListener('click', () => flipCard(cardElement, card));
+
+            gameBoard.appendChild(cardElement);
+        });
+    }
+
+    function flipCard(cardElement, card) {
+        if (cardElement.classList.contains('flipped') || secondCard) return;
+
+        cardElement.classList.add('flipped');
+
+        if (!firstCard) {
+            firstCard = cardElement;
+        } else {
+            secondCard = cardElement;
+            checkForMatch();
+        }
+    }
+
+    function checkForMatch() {
+        const firstIcon = firstCard.querySelector('img').src;
+        const secondIcon = secondCard.querySelector('img').src;
+
+        if (firstIcon === secondIcon) {
+            pairsFound++;
+            firstCard = null;
+            secondCard = null;
+            if (pairsFound === cards.length) {
+                document.getElementById('gameOver').style.display = 'block';
+            }
+        } else {
+            setTimeout(() => {
+                firstCard.classList.remove('flipped');
+                secondCard.classList.remove('flipped');
+                firstCard = null;
+                secondCard = null;
+            }, 1000);
+        }
+    }
+
+    function restartGame() {
+        pairsFound = 0;
+        setupGame();
+        document.getElementById('gameOver').style.display = 'none';
+    }
+
+    function exitGame() {
+        if (confirm("Are you sure you want to exit the game?")) {
+            window.location.href = '../../../webModule.php'; // Redirigir a la página específica
+        }
+    }
+
+    setupGame();
+</script>
+
+</body>
+</html>

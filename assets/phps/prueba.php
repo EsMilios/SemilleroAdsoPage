@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 }
 
 // Consulta SQL para obtener todos los términos del diccionario
-$sql = "SELECT tittle, description, icon FROM webVocabulary";
+$sql = "SELECT tittle, description, icon, audio FROM webVocabularyAudios";
 $result = $conn->query($sql);
 ?>
 
@@ -30,15 +30,17 @@ if ($result->num_rows > 0) {
         $tittleVocabularyCard = $row['tittle'];
         $aboutText1 = $row['description'];
         $imgCard = $row['icon'];
+        $audioData = base64_encode($row['audio']); // Codificar audio en base64
 ?>
         <div class="vocabularyModulesMain">
             <div class="vocabularyModulesMainUp">
                 <h2><?php echo $tittleVocabularyCard; ?></h2>
-                <button><i class="fa-solid fa-volume-high" style="color: #ffffff;"></i></button>
+                <!-- Botón de reproducción de audio -->
+                <button onclick="playAudio('<?php echo $audioData; ?>')"><i class="fa-solid fa-volume-high" style="color: #ffffff;"></i></button>
             </div>
             <div class="vocabularyModulesMainDown">
                 <p><?php echo $aboutText1; ?></p>
-                <img src="<?php echo $imgCard; ?>" alt="Icon of <?php echo $tittleVocabularyCard; ?>">    
+                <img src="<?php echo $imgCard; ?>" alt="Icon of <?php echo $tittleVocabularyCard; ?>" onerror="this.onerror=null; this.src='path/to/default/image.png';">
             </div>
         </div>
 <?php
@@ -50,12 +52,20 @@ $conn->close();
 ?>
 </div>
 
+<script>
+function playAudio(audioData) {
+    const audioBlob = new Blob([Uint8Array.from(atob(audioData), c => c.charCodeAt(0))], { type: 'audio/mpeg' });
+    const audioUrl = URL.createObjectURL(audioBlob);
+    const audio = new Audio(audioUrl);
+    audio.play();
+}
+</script>
+
 <!-- Tu estilo CSS -->
 <style>
-
 .vocabulary-container {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Esto crea dos columnas de igual tamaño */
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
 
@@ -63,7 +73,7 @@ $conn->close();
     display: flex;
     flex-direction: column;
     padding: 10px;
-    width: 450px;
+    width: 90%;
     background-color: var(--azul);
     gap: 30px;
     color: white;
@@ -71,8 +81,8 @@ $conn->close();
 }
 
 .vocabularyModulesMainDown img {
-    width: 80px;
-    height: 80px;
+    width: 30%;
+    height: 70%;
 }
 
 .vocabularyModulesMainUp {
@@ -95,8 +105,8 @@ $conn->close();
     padding-bottom: 10px;
     padding-right: 10px;
     display: flex;
-    gap: 40px;
     align-items: center;
+    gap: 30%;
 }
 
 .vocabularyModulesMainDown p {

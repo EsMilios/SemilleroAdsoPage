@@ -55,7 +55,7 @@
                     </div>
 
                     <div class="modulesPartsButton">
-                        <a href="#">Start Learning!</a>
+                        <a href="webModule.php">Start Learning!</a>
                     </div>
                 </div>
 
@@ -72,11 +72,11 @@
                     </div>
 
                     <div>
-                        <p>In this module, you'll explore essential vocabulary for cloud computing, including basics and service models like IaaS, PaaS, and SaaS. You'll learn about key platforms such as AWS, Azure, and Google Cloud, along with concepts like containerization using Docker, orchestration with Kubernetes, Serverless computing, CI/CD practices, and Load Balancing for scalable applications.p>
+                        <p>In this module, you'll explore essential vocabulary for cloud computing, including basics and service models like IaaS, PaaS, and SaaS. You'll learn about key platforms such as AWS, Azure, and Google Cloud, along with concepts like containerization using Docker, orchestration with Kubernetes, Serverless computing, CI/CD practices, and Load Balancing for scalable applications. </p>
                     </div>
 
                     <div class="modulesPartsButton">
-                        <a href="#">Start Learning!</a>
+                        <a href="cloudModule.php">Start Learning!</a>
                     </div>
                 </div>
 

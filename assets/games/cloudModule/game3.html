@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game</title>
+    <style>
+        /* Estilos */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .game-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        .card {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #007bff;
+            cursor: pointer;
+            font-size: 18px;
+            transition: transform 0.2s;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card.flipped {
+            background-color: #fff;
+            color: #333;
+            border: 1px solid #333;
+        }
+
+        .card img {
+            width: 60%;
+            height: 60%;
+            display: none;
+        }
+
+        .card.flipped img {
+            display: block;
+        }
+
+        #gameOver {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .exit {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .exit:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Memory Game</h1>
+    <div class="game-container" id="gameBoard"></div>
+    <div id="gameOver">
+        <h2>Congratulations! You've won!</h2>
+        <button class="exit" onclick="restartGame()">Play Again</button>
+    </div>
+    <button onclick="exitGame()" class="exit">Exit Game</button>
+</div>
+
+<script>
+    // Diccionario actualizado
+    const dictionary = [
+        { term: 'Cloud Computing', icon: 'https://cdn-icons-png.flaticon.com/128/5586/5586062.png' },
+        { term: 'AWS', icon: 'https://cdn-icons-png.flaticon.com/128/11518/11518934.png' },
+        { term: 'Azure', icon: 'https://cdn-icons-png.flaticon.com/128/873/873107.png' },
+        { term: 'Google Cloud', icon: 'https://cdn-icons-png.flaticon.com/128/104/104088.png' },
+        { term: 'SaaS', icon: 'https://cdn-icons-png.flaticon.com/128/5256/5256916.png' },
+        { term: 'PaaS', icon: 'https://cdn-icons-png.flaticon.com/128/11631/11631011.png' },
+        { term: 'IaaS', icon: 'https://cdn-icons-png.flaticon.com/128/11630/11630985.png' },
+        { term: 'Kubernetes', icon: 'https://static-00.iconduck.com/assets.00/kubernetes-icon-2048x1995-r1q3f8n7.png' },
+        { term: 'Docker', icon: 'https://www.docker.com/wp-content/uploads/2023/05/symbol_blue-docker-logo.png' },
+        { term: 'Serverless', icon: 'https://cdn.icon-icons.com/icons2/2699/PNG/512/serverless_logo_icon_168838.png' },
+    ];
+
+    let gameCards = [];
+    let firstCard = null;
+    let secondCard = null;
+    let pairsFound = 0;
+
+    function setupGame() {
+        gameCards = [...dictionary, ...dictionary]; // Duplicar las cartas
+        gameCards.sort(() => Math.random() - 0.5); // Mezclar las cartas
+
+        const gameBoard = document.getElementById('gameBoard');
+        gameBoard.innerHTML = ''; // Limpiar el tablero
+
+        gameCards.forEach((card) => {
+            const cardElement = document.createElement('div');
+            cardElement.classList.add('card');
+            cardElement.innerHTML = `<img src="${card.icon}" alt="${card.term}">`;
+            cardElement.addEventListener('click', () => flipCard(cardElement, card));
+
+            gameBoard.appendChild(cardElement);
+        });
+    }
+
+    function flipCard(cardElement, card) {
+        if (cardElement.classList.contains('flipped') || secondCard) return;
+
+        cardElement.classList.add('flipped');
+
+        if (!firstCard) {
+            firstCard = cardElement;
+        } else {
+            secondCard = cardElement;
+            checkForMatch();
+        }
+    }
+
+    function checkForMatch() {
+        const firstIcon = firstCard.querySelector('img').src;
+        const secondIcon = secondCard.querySelector('img').src;
+
+        if (firstIcon === secondIcon) {
+            pairsFound++;
+            firstCard = null;
+            secondCard = null;
+            if (pairsFound === dictionary.length) {
+                document.getElementById('gameOver').style.display = 'block';
+            }
+        } else {
+            setTimeout(() => {
+                firstCard.classList.remove('flipped');
+                secondCard.classList.remove('flipped');
+                firstCard = null;
+                secondCard = null;
+            }, 1000);
+        }
+    }
+
+    function restartGame() {
+        pairsFound = 0;
+        setupGame();
+        document.getElementById('gameOver').style.display = 'none';
+    }
+
+    function exitGame() {
+        if (confirm("Are you sure you want to exit the game?")) {
+            window.location.href = '../../../cloudModule.php';
+        }
+    }
+
+    setupGame();
+</script>
+
+</body>
+</html>
