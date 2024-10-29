@@ -94,4 +94,32 @@
     .navStart a {
         font-size: 32px;
     }
+
+    @media (max-width: 768px) {
+        nav {
+            flex-direction: space-between;
+            align-items: center;
+            padding: 5px;
+        }
+
+        .navLogo a {
+            font-size: 28px;
+        }
+
+        .navStart a {
+            font-size: 24px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .navLogo a,
+        .navStart a {
+            font-size: 20px;
+            padding: 5px;
+        }
+
+        nav {
+            padding: 5px;
+        }
+    }
 </style>

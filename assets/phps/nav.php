@@ -1,3 +1,4 @@
+<link rel="icon" href="assets/images/logoSenaMainFooter2.svg" type="image/x-icon">
 <section class="mainNav">
     <nav>
         <div class="navLogo">
@@ -25,10 +26,19 @@
         --frost: #FFFFFF
     }
 
-    .mainNav{
+    .mainNav {
         width: 100%;
         display: flex;
         justify-content: center;
+    }
+
+    nav {
+        width: 100%;
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
     }
 
     nav a {
@@ -42,10 +52,8 @@
         position: absolute;
         left: 0;
         bottom: -2px;
-        /* Ajusta la posición del borde si es necesario */
         width: 0;
         height: 2px;
-        /* Grosor de la línea */
         background-color: black;
         transition: width 0.3s ease-in-out;
     }
@@ -54,24 +62,14 @@
         width: 100%;
     }
 
-    nav {
-        width: 100%;
-        margin-top: 10px;
-        display: flex;
-        justify-content: space-between;
-    }
-
     .navLogo {
-        width: 150px;
         display: flex;
         justify-content: center;
         align-items: center;
         padding: 10px;
     }
 
-
     .navStart {
-        padding: 10px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -81,7 +79,6 @@
     .navLogo a,
     .navStart a {
         text-decoration: none;
-        font-weight: bold;
         font-weight: 900;
         padding: 5px 15px;
         color: var(--azul);
@@ -93,5 +90,34 @@
 
     .navStart a {
         font-size: 32px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        nav {
+            flex-direction: space-between;
+            align-items: center;
+            padding: 5px;
+        }
+
+        .navLogo a {
+            font-size: 28px;
+        }
+
+        .navStart a {
+            font-size: 24px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .navLogo a,
+        .navStart a {
+            font-size: 20px;
+            padding: 5px;
+        }
+
+        nav {
+            padding: 5px;
+        }
     }
 </style>

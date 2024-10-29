@@ -8,7 +8,6 @@
 <body>
     <section class="main">
         <?php include_once 'assets/phps/nav.php'; ?>
-
         <section class="presentation">
             <div class="tittle">
                 <h1 id="title1">Análisis y Desarrollo de Software</h1>
@@ -30,59 +29,33 @@
             </div>
         </section>
 
-
-
         <section class="modules">
-
             <div class="modulesTittle">
                 <h1>About the Modules</h1>
             </div>
-
             <div class="modulesPresentation">
-
                 <div class="modulesParts">
-
                     <div class="modulesPartsTittle">
-                        <div><img src="assets/images/webDevelopmentLogo.png" alt="" style="width: 50px; height: 50px;">
-                        </div>
-                        <div>
-                            <h2>Web Development Module</h2>
-                        </div>
+                        <img src="assets/images/webDevelopmentLogo.png" alt="" style="width: 50px; height: 50px;">
+                        <h2>Web Development Module</h2>
                     </div>
-
-                    <div>
-                        <p>In this module, you'll learn essential vocabulary for web development, covering HTML for structuring content, CSS for styling pages, and JavaScript for adding interactivity. You'll also explore Responsive Design concepts for device adaptability and frameworks like Bootstrap that provide pre-designed components for efficient development.</p>
-                    </div>
-
+                    <p>In this module, you'll learn essential vocabulary for web development, covering HTML for structuring content, CSS for styling pages, and JavaScript for adding interactivity. You'll also explore Responsive Design concepts for device adaptability and frameworks like Bootstrap that provide pre-designed components for efficient development.</p>
                     <div class="modulesPartsButton">
                         <a href="webModule.php">Start Learning!</a>
                     </div>
                 </div>
 
-
-
                 <div class="modulesParts">
-
                     <div class="modulesPartsTittle">
-                        <div><img src="assets/images/cloudDevelopmentLogo.png" alt=""
-                                style="width: 50px; height: 50px;"></div>
-                        <div>
-                            <h2>Cloud Computing Module</h2>
-                        </div>
+                        <img src="assets/images/cloudDevelopmentLogo.png" alt="" style="width: 50px; height: 50px;">
+                        <h2>Cloud Computing Module</h2>
                     </div>
-
-                    <div>
-                        <p>In this module, you'll explore essential vocabulary for cloud computing, including basics and service models like IaaS, PaaS, and SaaS. You'll learn about key platforms such as AWS, Azure, and Google Cloud, along with concepts like containerization using Docker, orchestration with Kubernetes, Serverless computing, CI/CD practices, and Load Balancing for scalable applications. </p>
-                    </div>
-
+                    <p>In this module, you'll explore essential vocabulary for cloud computing, including basics and service models like IaaS, PaaS, and SaaS. You'll learn about key platforms such as AWS, Azure, and Google Cloud, along with concepts like containerization using Docker, orchestration with Kubernetes, Serverless computing, CI/CD practices, and Load Balancing for scalable applications.</p>
                     <div class="modulesPartsButton">
                         <a href="cloudModule.php">Start Learning!</a>
                     </div>
                 </div>
-
             </div>
-
         </section>
         <?php include_once 'assets/phps/footer.php'; ?>
     </section>
-</body>

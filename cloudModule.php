@@ -234,7 +234,7 @@
                     <p>Have fun while you learn! Here are some games you can try:</p>
                     <ul class="games-list">
                     <li><a href="assets/games/cloudModule/game1.html" class="game-link"><i class="fas fa-gamepad"></i> Game 1: Word Sorting Game</a></li>
-                        <li><a href="assets/games/cloudModule/game2.html" class="game-link"><i class="fas fa-gamepad"></i> Game 2: Complete the Tech Term</a></li>
+                        <li class="hide-responsive"><a href="assets/games/cloudModule/game2.html" class="game-link"><i class="fas fa-gamepad"></i> Game 2: Complete the Tech Term</a></li>
                         <li><a href="assets/games/cloudModule/game3.html" class="game-link"><i class="fas fa-gamepad"></i> Game 3: Memory Game</a></li>
 </ul>
                 </div>

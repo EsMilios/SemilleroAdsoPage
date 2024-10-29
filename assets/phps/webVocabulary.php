@@ -112,4 +112,24 @@ function playAudio(audioData) {
 .vocabularyModulesMainDown p {
     width: 60%;
 }
+/* Responsividad */
+@media (max-width: 768px) {
+    .vocabulary-container {
+        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+    }
+
+    .vocabularyModulesMainDown img {
+        width: 100%; /* Hacer la imagen más grande en pantallas pequeñas */
+        height: auto; /* Mantener proporciones */
+    }
+
+    .vocabularyModulesMainUp, .vocabularyModulesMainDown {
+        flex-direction: column; /* Cambiar a columna */
+        align-items: flex-start; /* Alinear a la izquierda */
+    }
+
+    .vocabularyModulesMainDown p {
+        width: 100%; /* Ancho completo en modo responsivo */
+    }
+}
 </style>
